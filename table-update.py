@@ -10,6 +10,7 @@ account = ''
 warehouse = ''
 database = ''
 schema = ''
+role = ''
 
 desired_table_name = ''
 
@@ -48,7 +49,8 @@ def push_snowflake(dataframe, snowflake_table_name):
         password = password,
         database = database,
         schema = schema,
-        warehouse = warehouse        
+        warehouse = warehouse,
+        role = role      
     ))
     
     connection = engine.connect()
