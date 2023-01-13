@@ -1,11 +1,14 @@
 import snowflake.connector
+import pandas as pd
 
 # Declare the Snowflake connection details as universal variables
 username = 'your_username'
 password = 'your_password'
 account = 'your_account'
+role = 'your_role'
+warehouse = 'your_warehouse'
 
-def push_snowflake(dataframe, desired_table_name, warehouse, role, database, schema):
+def push_snowflake(dataframe, desired_table_name, database, schema):
     # Connect to Snowflake
     con = snowflake.connector.connect(
         user=username,
