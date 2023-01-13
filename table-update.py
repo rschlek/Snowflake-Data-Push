@@ -1,13 +1,48 @@
 import snowflake.connector
 import pandas as pd
 
-# Declare the Snowflake connection details as universal variables
-username = 'your_username'
-password = 'your_password'
-account = 'your_account'
-role = 'your_role'
-warehouse = 'your_warehouse'
+# Declare the Snowflake connection details
+username = ''
+password = ''
+account = ''
+warehouse = ''
+database = ''
+schema = ''
+role = ''
 
+desired_table_name = ''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''Function to push data to snowflake
+if table name does not exist, table will be created
+if table name exists in db, table will be appended
+@param dataframe dataframe to push
+@param desired_table_name is a string of the table name to be created or appended to in snowflake
+@param database string of snowflake database to use
+@param schema string of snowflake schema to use
+
+'''
 def push_snowflake(dataframe, desired_table_name, database, schema):
     # Connect to Snowflake
     con = snowflake.connector.connect(
