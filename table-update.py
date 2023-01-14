@@ -42,7 +42,7 @@ if table name exists in db, table will be appended
 @param database string of snowflake database to use
 @param schema string of snowflake schema to use
 '''
-def push_snowflake(dataframe, table_name, username=username, password=password, database=database, schema=schema, role=role, warehouse=warehouse):
+def push_snowflake(dataframe, table_name, database=database, schema=schema):
     
     # Connect to Snowflake
     con = snowflake.connector.connect(
