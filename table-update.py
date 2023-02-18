@@ -41,6 +41,8 @@ if table name exists in db, table will be appended
 @param desired_table_name is a string of the table name to be created or appended to in snowflake
 @param database string of snowflake database to use
 @param schema string of snowflake schema to use
+
+Note: Make sure datetime64[ns] data is also converted using .dt.date in order to avoid timestamp issues
 '''
 def push_snowflake(dataframe, table_name, database=database, schema=schema):
     
@@ -51,6 +53,8 @@ def push_snowflake(dataframe, table_name, database=database, schema=schema):
         account=account,
         role=role,
         warehouse=warehouse,
+        database=database,
+        schema=schema
     )
     cur = con.cursor()
     cur.execute("USE ROLE {}".format(role))
@@ -70,7 +74,7 @@ def push_snowflake(dataframe, table_name, database=database, schema=schema):
             elif dataframe[column].dtype == 'float64':
                 columns.append("{} FLOAT".format(column))
             elif dataframe[column].dtype == 'datetime64[ns]':
-                columns.append("{} TIMESTAMP".format(column))
+                columns.append("{} DATE".format(column))
             else:
                 raise ValueError("Data type {} not supported in Snowflake".format(dataframe[column].dtype))
         columns = ', '.join(columns)
